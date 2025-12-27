@@ -6,7 +6,7 @@ lEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_daftar_menu.kategori");
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 }
-$select_kat_menu = mysqli_query($conn, "SELECT kategori_menu FROM tb_kategori_menu");
+$select_kat_menu = mysqli_query($conn, "SELECT id,kategori_menu FROM tb_kategori_menu");
 ?>
 <div class="col-lg-9 mt-2">
     <div class="card">
@@ -65,7 +65,7 @@ $select_kat_menu = mysqli_query($conn, "SELECT kategori_menu FROM tb_kategori_me
                                                 <option selected hidden value="">Pilih Kategori Menu</option>
                                                 <?php
                                                 foreach ($select_kat_menu as $value) {
-                                                    echo "<option value='" . $value['kategori_menu'] . "'>" . $value['kategori_menu'] . "</option>";
+                                                    echo "<option value='" . $value['id'] . "'>" . $value['kategori_menu'] . "</option>";
                                                 }
                                                 ?>
                                             </select>

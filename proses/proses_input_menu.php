@@ -1,11 +1,10 @@
 <?php
 include "connect.php";
     $name =  (isset ($_POST['nama_menu'])) ? htmlentities($_POST['nama_menu']) : "";
-    // $username =  (isset ($_POST['username'])) ? htmlentities($_POST['username']) : "";
-    // $level =  (isset ($_POST['level'])) ? htmlentities($_POST['level']) : "";
-    // $nohp =  (isset ($_POST['nohp'])) ? htmlentities($_POST['nohp']) : "";
-    // $alamat =  (isset ($_POST['alamat'])) ? htmlentities($_POST['alamat']) : "";
-    // $password =  md5('password');
+    $keterangan =  (isset ($_POST['keterangan'])) ? htmlentities($_POST['keterangan']) : "";
+    $kat_menu =  (isset ($_POST['kat_menu'])) ? htmlentities($_POST['kat_menu']) : "";
+    $harga =  (isset ($_POST['harga'])) ? htmlentities($_POST['harga']) : "";
+    $stok =  (isset ($_POST['stok'])) ? htmlentities($_POST['stok']) : "";
 
     $kode_rand = rand(10000,99999)."_";
     $target_dir = "../assets/img/".$kode_rand;
@@ -41,15 +40,15 @@ include "connect.php";
         $message = '<script>alert("'.$message.', Gambar tidak dapat diupload");
                     window.location="../menu"</script>';
         }else{ 
-            $select = mysqli_query($conn, "SELECT * FROM tb_dafter_menu WHERE nama_menu ='$nama_menu'");
+            $select = mysqli_query($conn, "SELECT * FROM tb_daftar_menu WHERE nama_menu ='$nama_menu'");
             if(mysqli_num_rows($select) > 0){
                 $message = '<script>alert("Nama Menu yang dimasukan telah ada, silahkan gunakan nama lain");
                 window.location="../menu"</script>';
 
             }else{
                 if(move_uploaded_file($_FILES['foto']['tmp_name'], $target_file)){
-                    $query = mysqli_query($conn, "INSERT INTO tb_dafter_menu (foto,nama_menu)
-                    values ('".$kode_rand.$_FILES['foto']['name']."', '$nama_menu')");
+                    $query = mysqli_query($conn, "INSERT INTO tb_daftar_menu (foto,nama_menu,keterangan,kategori,harga,stok)
+                    values ('".$kode_rand.$_FILES['foto']['name']."', '$nama_menu', '$keterangan', '$kat_menu', '$harga', '$stok')");
                     if(!$query){
                         $message = '<script>alert("Data gagal dimasukkan")
                     window.location="../menu"</script>';
