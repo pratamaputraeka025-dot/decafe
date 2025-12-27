@@ -40,7 +40,7 @@ if(empty($_SESSION['username_decafe'])){
             <!-- End Content -->
         </div>
 
-        <div class="fixed-bottom text-center mb-2">
+        <div class="fixed-bottom text-center bg-light py-2">
             Copyrigth 2025 Tamazy
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
