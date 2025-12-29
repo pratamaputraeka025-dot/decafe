@@ -28,7 +28,7 @@ if(empty($_SESSION['username_decafe'])){
 
     <!-- End Header -->
     <div class="container-lg">
-        <div class="row">
+        <div class="row mb-5">
             <!-- Sidebar -->
                 <?php include "sidebar.php"; ?>
             <!-- End Sidebar -->

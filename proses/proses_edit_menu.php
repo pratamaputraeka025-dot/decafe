@@ -1,5 +1,6 @@
 <?php
 include "connect.php";
+    $id =  (isset ($_POST['id'])) ? htmlentities($_POST['id']) : "";
     $nama_menu =  (isset ($_POST['nama_menu'])) ? htmlentities($_POST['nama_menu']) : "";
     $keterangan =  (isset ($_POST['keterangan'])) ? htmlentities($_POST['keterangan']) : "";
     $kat_menu =  (isset ($_POST['kat_menu'])) ? htmlentities($_POST['kat_menu']) : "";
@@ -47,8 +48,7 @@ include "connect.php";
 
             }else{
                 if(move_uploaded_file($_FILES['foto']['tmp_name'], $target_file)){
-                    $query = mysqli_query($conn, "INSERT INTO tb_daftar_menu (foto,nama_menu,keterangan,kategori,harga,stok)
-                    values ('".$kode_rand.$_FILES['foto']['name']."', '$nama_menu', '$keterangan', '$kat_menu', '$harga', '$stok')");
+                    $query = mysqli_query($conn, "UPDATE tb_daftar_menu SET foto='".$kode_rand.$_FILES['foto']['name']."', nama_menu='$nama_menu', keterangan='$keterangan', kategori='$kat_menu', harga='$harga', stok='$stok' WHERE id='$id'");
                     if(!$query){
                         $message = '<script>alert("Data gagal dimasukkan")
                     window.location="../menu"</script>';

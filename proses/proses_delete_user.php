@@ -5,11 +5,11 @@ include "connect.php";
     if(!empty($_POST['input_user_validate'])){
         $query = mysqli_query($conn, "DELETE FROM tb_user WHERE id='$id'");
         if(!$query){
-                        $message = '<script>alert("Data gagal dihapus")</script>';
+                        $message = '<script>alert("Data gagal dihapus");
+                        window.location="../user"</script>';
         }else{
-                        $message = '<script>alert("Data berhasil didihapus")
-            window.location="../user"</script>
-                        </script>';
+                        $message = '<script>alert("Data berhasil didihapus");
+                        window.location="../user"</script>';
         }
         }echo $message;
     
