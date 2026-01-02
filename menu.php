@@ -207,7 +207,7 @@ $select_kat_menu = mysqli_query($conn, "SELECT id_kat_menu,kategori_menu FROM tb
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="input-group mb-3">
-                                            <input type="file" class="form-control py-3" id="uploadFoto" placeholder="Nama Menu" name="foto" required >
+                                            <input type="file" class="form-control py-3" id="uploadFoto" placeholder="Nama Menu" name="foto" required>
                                             <label class="input-group-text" for="uploadFoto">Upload Foto Menu</label>
                                             <div class="invalid-feedback">
                                                 Masukan File Foto Menu.
@@ -312,12 +312,10 @@ $select_kat_menu = mysqli_query($conn, "SELECT id_kat_menu,kategori_menu FROM tb
             <!-- akhir Modal Delete -->
 
         <?php
-        }
-        
+        }       
         ?>
-
-            <div class="table-responsive mt-3">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover" id="example">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
