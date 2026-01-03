@@ -6,7 +6,7 @@
     
     <nav class="navbar navbar-expand navbar-dark bg-primary sticky-top">
         <div class="container-lg">
-            <a class="navbar-brand" href="."><i class="bi bi-cup-hot"></i> DeCafe</a>
+            <a class="navbar-brand" href="."><i class="bi bi-cup-hot"></i> W-CAFE</a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">

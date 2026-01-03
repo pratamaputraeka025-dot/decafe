@@ -5,26 +5,6 @@ while ($row = mysqli_fetch_array($query)) {
     $result[] = $row;
 }
 
-$query_chart = mysqli_query($conn, "SELECT nama_menu, tb_daftar_menu.id, SUM(tb_list_order.jumlah) AS total_jumlah FROM tb_daftar_menu
-LEFT JOIN tb_list_order ON tb_daftar_menu.id = tb_list_order.menu
-GROUP BY tb_daftar_menu.id
-ORDER BY tb_daftar_menu.id ASC");
-
-// $result_chart = array();
-while ($record_chart = mysqli_fetch_array($query_chart)) {
-    $result_chart[] = $record_chart;
-} 
-$array_menu = array_column($result_chart, 'nama_menu');
-$array_menu_quote = array_map(function ($menu){
-    return "'" . $menu . "'";
-}, $array_menu);
-$string_menu = implode(',', $array_menu_quote);
-// echo $string_menu."<br>";
-
-$array_jumlah_pesanan = array_column($result_chart, 'total_jumlah');
-$string_jumlah_pesanan = implode(',', $array_jumlah_pesanan);
-// echo $string_jumlah_pesanan;
-
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -79,52 +59,12 @@ $string_jumlah_pesanan = implode(',', $array_jumlah_pesanan);
     <!-- Judul -->
     <div class="card mt-4 border-0 bg-light">
         <div class="card-body text-center">
-            <h5 class="card-title">DECAFE - APLIKASI PEMESANAN MAKANAN DAN MINUMAN CAFE</h5>
-            <p class="card-text">Aplikasi pemesanan makanan dan minuman yang mudah dan efisien. Nikmati beragam menu makanan dan minuman favorit anda.</p>
+            <h5 class="card-title">W-CAFE - KASIR PEMESANAN MAKANAN DAN MINUMAN</h5>
+            <p class="card-text"> Nikmati beragam menu makanan dan minuman favorit anda :D.</p>
             <a href="order" class="btn btn-primary">Buat Order</a>
         </div>
     </div>
     <!-- Akhir Judul -->
-
-    <!-- Chart -->
-    <div class="card mt-4 border-0 bg-light">
-        <div class="card-body text-center">
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
-            <script>
-                const ctx = document.getElementById('myChart');
-
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: [<?php echo $string_menu ?>],
-                        datasets: [{
-                            label: 'Jumlah Porsi Terjual',
-                            data: [<?php echo $string_jumlah_pesanan ?>],
-                            borderWidth: 1,
-                            backgroundColor: [
-                                'rgba(255, 99, 133, 1)',
-                                'rgba(54, 163, 235, 1)',
-                                'rgba(255, 207, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(27, 160, 107, 1)'
-                            ]
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            </script>
-        </div>
-    </div>
-    <!-- Akhir Chart -->
 
 
 </div>

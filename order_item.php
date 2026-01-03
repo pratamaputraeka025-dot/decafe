@@ -395,88 +395,282 @@ function updateStokInfo() {
 
 <div id="strukContent" class="d-none">
     <style>
-        #struk {
-            font-family: "Arial", sans-serif;
-            font-size: 14px;
-            max-width: 300px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: 80mm;
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #struk, #struk * {
+                visibility: visible;
+            }
+            #struk {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
         }
-        #struk h2 {
+        
+        #struk {
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 15px;
+            background: white;
+            color: black;
+        }
+        
+        #struk .header {
             text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #333;
+            padding-bottom: 10px;
+        }
+        
+        #struk .header h2 {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
             color: #333;
         }
-
-        #struk p{
-            margin: 5px 0;
-
-
+        
+        #struk .header p {
+            margin: 2px 0;
+            font-size: 11px;
+            color: #666;
         }
-        #struk table {
-            font-size: 14px;
-            border-collapse: collapse;
-            margin-top: 10px;
-            width: 100%;
+        
+        #struk .info-section {
+            margin: 10px 0;
+            font-size: 11px;
         }
-        struk th, #struk td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+        
+        #struk .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px 0;
         }
-        #struk .total {
+        
+        #struk .info-label {
             font-weight: bold;
+            width: 100px;
+        }
+        
+        #struk .divider {
+            border-top: 1px dashed #333;
+            margin: 10px 0;
+        }
+        
+        #struk .divider-double {
+            border-top: 2px solid #333;
+            margin: 10px 0;
+        }
+        
+        #struk table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 11px;
+        }
+        
+        #struk th {
+            text-align: left;
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+            font-weight: bold;
+        }
+        
+        #struk td {
+            padding: 5px 0;
+            vertical-align: top;
+        }
+        
+        #struk .item-name {
+            width: 50%;
+        }
+        
+        #struk .item-qty {
+            width: 15%;
+            text-align: center;
+        }
+        
+        #struk .item-price {
+            width: 35%;
+            text-align: right;
+        }
+        
+        #struk .subtotal-row {
+            border-top: 1px solid #333;
+            padding-top: 5px;
+        }
+        
+        #struk .total-section {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        
+        #struk .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        #struk .grand-total {
+            font-size: 14px;
+            padding: 8px 0;
+            border-top: 2px solid #333;
+            border-bottom: 2px solid #333;
+        }
+        
+        #struk .payment-section {
+            margin-top: 10px;
+            font-size: 11px;
+        }
+        
+        #struk .footer {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 2px dashed #333;
+            font-size: 10px;
+        }
+        
+        #struk .footer p {
+            margin: 3px 0;
+        }
+        
+        #struk .thank-you {
+            font-weight: bold;
+            font-size: 12px;
+            margin: 10px 0 5px 0;
         }
     </style>
     <div id="struk">
-        <h2>Struk Pembayaran DeCafe</h2>
-        <p>Kode Order: <?php echo $kode ?></p>
-        <p>Meja: <?php echo $meja ?></p>
-        <p>Pelanggan: <?php echo $pelanggan ?></p>
-        <p>Waktu Order: <?php echo date('d/m/Y H:i:s', strtotime($result[0]['waktu_order'])) ?></p>
+        <!-- Header -->
+        <div class="header">
+            <h2>☕ W-CAFE ☕</h2>
+            <p>Aplikasi Pemesanan Cafe</p>
+            <p>Jl. HAJI No. 123, Jakarta</p>
+            <p>Telp: (021) 1234-5678</p>
+        </div>
 
+        <!-- Info Transaksi -->
+        <div class="info-section">
+            <div class="info-row">
+                <span class="info-label">No. Order</span>
+                <span>: <?php echo $kode ?></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Tanggal</span>
+                <span>: <?php echo date('d/m/Y H:i:s', strtotime($result[0]['waktu_order'])) ?></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Pelanggan</span>
+                <span>: <?php echo $pelanggan ?></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Meja</span>
+                <span>: <?php echo $meja ?></span>
+            </div>
+        </div>
+
+        <div class="divider-double"></div>
+
+        <!-- Item Pesanan -->
         <table>
             <thead>
                 <tr>
-                    <th>Nama Menu</th>
-                    <th>Harga</th>
-                    <th>Qty</th>
-                    <th>Total</th>
+                    <th class="item-name">Item</th>
+                    <th class="item-qty">Qty</th>
+                    <th class="item-price">Harga</th>
                 </tr>
-
             </thead>
             <tbody>
                 <?php
                 $total = 0;
-                foreach ($result as $row) { ?>
+                foreach ($result as $row) { 
+                    $subtotal = $row['harganya'];
+                    $total += $subtotal;
+                ?>
                     <tr>
-                        <td><?php echo $row['nama_menu'] ?></td>
-                        <td><?php echo number_format($row['harga'], 0, ',', '.') ?></td>
-                        <td><?php echo $row['jumlah'] ?></td>
-                        <td><?php echo number_format($row['harganya'], 0, ',', '.') ?></td>
+                        <td class="item-name"><?php echo $row['nama_menu'] ?></td>
+                        <td class="item-qty"><?php echo $row['jumlah'] ?>x</td>
+                        <td class="item-price">Rp <?php echo number_format($row['harga'], 0, ',', '.') ?></td>
                     </tr>
-                <?php
-                    $total += $row['harganya'];
-                } ?>
-                <tr class="total">
-                    <td colspan="3" class="fw-bold">Total Harga</td>
-                    <td><?php echo number_format($total, 0, ',', '.') ?></td>
-                </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td class="item-price" style="font-size: 10px; color: #666;">
+                            Rp <?php echo number_format($subtotal, 0, ',', '.') ?>
+                        </td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
+
+        <div class="divider"></div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <div class="total-row grand-total">
+                <span>TOTAL</span>
+                <span>Rp <?php echo number_format($total, 0, ',', '.') ?></span>
+            </div>
+        </div>
+
+        <?php 
+        // Ambil data pembayaran jika sudah bayar
+        if(!empty($result[0]['id_bayar'])) {
+            $query_bayar = mysqli_query($conn, "SELECT * FROM tb_bayar WHERE id_bayar='$kode'");
+            $data_bayar = mysqli_fetch_array($query_bayar);
+            
+            if($data_bayar) {
+                $uang_bayar = $data_bayar['nominal_uang'];
+                $kembalian = $uang_bayar - $total;
+        ?>
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <div class="divider"></div>
+            <div class="info-row">
+                <span class="info-label">Tunai</span>
+                <span>: Rp <?php echo number_format($uang_bayar, 0, ',', '.') ?></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Kembalian</span>
+                <span>: Rp <?php echo number_format($kembalian, 0, ',', '.') ?></span>
+            </div>
+        </div>
+        <?php 
+            }
+        } 
+        ?>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="thank-you">Terima Kasih</p>
+            <p>Atas Kunjungan Anda</p>
+            <p>Selamat Menikmati!</p>
+            <div class="divider"></div>
+            <p><?php echo date('d/m/Y H:i:s') ?></p>
+        </div>
     </div>
 </div>
 
 <script>
     function printStruk() {
         var strukContent = document.getElementById("strukContent").innerHTML;
-
-        var printFrame = document.createElement('iframe');
-        printFrame.style.display = 'none';
-        document.body.appendChild(printFrame);
-        printFrame.contentDocument.write(strukContent);
-        printFrame.contentWindow.print();
-        document.body.removeChild(printFrame);
-
+        
+        var printWindow = window.open('', '_blank', 'width=400,height=600');
+        printWindow.document.write('<html><head><title>Cetak Struk</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(strukContent);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        
+        setTimeout(function() {
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        }, 250);
     }
 </script>

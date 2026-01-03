@@ -43,7 +43,7 @@
                     $page = "home.php";
                     include "main.php";
                 }
-            }elseif (isset($_GET['x']) && $_GET['x'] == 'laporan') {
+            } elseif (isset($_GET['x']) && $_GET['x'] == 'laporan') {
                 if ($_SESSION['level_decafe'] == 1) {
                     $page = "laporan.php";
                     include "main.php";
