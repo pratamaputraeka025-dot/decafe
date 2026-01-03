@@ -47,66 +47,99 @@ $select_menu = mysqli_query($conn, "SELECT id,nama_menu FROM tb_daftar_menu");
                 </div>
             </div>
 
-            <!-- Modal Tambah item Baru -->
-            <div class="modal fade" id="tambahItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-fullscren-md-down">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Menu makanan dan minuman</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="needs-validation" novalidate action="proses/proses_input_orderitem.php" method="POST">
-                                <input type="hidden" name="kode_order" value="<?php echo $kode ?>">
-                                <input type="hidden" name="meja" value="<?php echo $meja ?>">
-                                <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="form-floating mb-3">
-                                            <select class="form-select" name="menu" id="">
-                                                <option selected hidden value="">Pilih Menu</option>
-                                                <?php
-                                                foreach ($select_menu as $value) {
-                                                    echo "<option value= $value[id]>$value[nama_menu]</option>";
-                                                }
-                                                ?>
-
-                                            </select>
-                                            <label for="menu">Menu Makanan/Minuman</label>
-                                            <div class="invalid-feedback">
-                                                Pilih Menu.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="floatingInput" placeholder="Jumlah Porsi" name="jumlah" required>
-                                            <label for="floatingInput">Jumlah Porsi</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Jumlah Porsi.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="Catatan" name="catatan">
-                                            <label for="floatingInput">Catatan</label>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="input_orderitem_validate" value="12345">Save changes</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
+            <!-- Ganti bagian Modal Tambah item Baru dengan kode berikut -->
+<!-- Modal Tambah item Baru -->
+<div class="modal fade" id="tambahItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscren-md-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Menu makanan dan minuman</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form class="needs-validation" novalidate action="proses/proses_input_orderitem.php" method="POST">
+                    <input type="hidden" name="kode_order" value="<?php echo $kode ?>">
+                    <input type="hidden" name="meja" value="<?php echo $meja ?>">
+                    <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" name="menu" id="menuSelect" required onchange="updateStokInfo()">
+                                    <option selected hidden value="">Pilih Menu</option>
+                                    <?php
+                                    // Update query untuk mendapatkan stok
+                                    $select_menu_with_stok = mysqli_query($conn, "SELECT id, nama_menu, stok FROM tb_daftar_menu");
+                                    foreach ($select_menu_with_stok as $value) {
+                                        echo "<option value='$value[id]' data-stok='$value[stok]'>$value[nama_menu] (Stok: $value[stok])</option>";
+                                    }
+                                    ?>
+                                </select>
+                                <label for="menu">Menu Makanan/Minuman</label>
+                                <div class="invalid-feedback">
+                                    Pilih Menu.
+                                </div>
+                            </div>
+                            <div id="stokInfo" class="text-muted small mb-2" style="display:none;">
+                                <i class="bi bi-info-circle"></i> Stok tersedia: <span id="stokValue">0</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="jumlahInput" placeholder="Jumlah Porsi" name="jumlah" required min="1" max="999">
+                                <label for="floatingInput">Jumlah Porsi</label>
+                                <div class="invalid-feedback">
+                                    Masukan Jumlah Porsi.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Catatan" name="catatan">
+                                <label for="floatingInput">Catatan</label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="input_orderitem_validate" value="12345">Save changes</button>
+            </div>
+            </form>
         </div>
-        <!-- akhir Modal Tambah Item Baru -->
+    </div>
+</div>
+<!-- akhir Modal Tambah Item Baru -->
+
+<script>
+function updateStokInfo() {
+    var select = document.getElementById('menuSelect');
+    var selectedOption = select.options[select.selectedIndex];
+    var stok = selectedOption.getAttribute('data-stok');
+    var jumlahInput = document.getElementById('jumlahInput');
+    var stokInfo = document.getElementById('stokInfo');
+    var stokValue = document.getElementById('stokValue');
+    
+    if(stok && stok > 0) {
+        stokValue.textContent = stok;
+        stokInfo.style.display = 'block';
+        jumlahInput.setAttribute('max', stok);
+        
+        // Ubah warna jika stok menipis
+        if(stok < 5) {
+            stokInfo.className = 'text-danger small mb-2';
+        } else if(stok < 10) {
+            stokInfo.className = 'text-warning small mb-2';
+        } else {
+            stokInfo.className = 'text-muted small mb-2';
+        }
+    } else {
+        stokInfo.style.display = 'none';
+        jumlahInput.setAttribute('max', '999');
+    }
+}
+</script>
 
         <?php
         if (empty($result)) {

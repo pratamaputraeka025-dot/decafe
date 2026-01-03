@@ -54,7 +54,7 @@ $string_jumlah_pesanan = implode(',', $array_jumlah_pesanan);
 
             ?>
                 <div class="carousel-item <?php echo $aktif; ?>">
-                    <img src="assets/img/<?php echo $data['foto']; ?>" class="img-fluid" style="height: 250px; width:1000px; object-fit:cover" alt="...">
+                    <img src="assets/img/<?php echo $data['foto']; ?>" class="img-fluid" style="height: 400px; width: 1000px; object-fit:cover" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5><?php echo $data['nama_menu']; ?></h5>
                         <p><?php echo $data['keterangan']; ?></p>

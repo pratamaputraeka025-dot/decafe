@@ -43,7 +43,6 @@ while ($record = mysqli_fetch_array($query)) {
                             <th scope="col">Pelanggan</th>
                             <th scope="col">Meja</th>
                             <th scope="col">Total Harga</th>
-                            <th scope="col">Pelayan</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -60,7 +59,6 @@ while ($record = mysqli_fetch_array($query)) {
                                 <td><?php echo $row['pelanggan'] ?></td>
                                 <td><?php echo $row['meja'] ?></td>
                                 <td><?php echo number_format((int)$row['harganya'], 0, ',', '.') ?></td>
-                                <td><?php echo $row['nama'] ?></td>
                                 <td class="d-flex">
                                         <a class="btn btn-info btn-sm me-1" href="./?x=viewitem&order=<?php echo $row['id_order']."&meja=".$row['meja']."&pelanggan=".$row['pelanggan'] ?>"><i class="bi bi-eye"></i></a>
                                 </td>

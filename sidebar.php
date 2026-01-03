@@ -22,7 +22,7 @@
                                     <?php if($hasil['level']==1 || $hasil['level']==3){?>
                                     <li class="nav-item">
                                         <a class="nav-link ps-2 <?php echo  ((isset($_GET['x']) && $_GET['x']=='menu') ||  !isset($_GET['x'])) ? 
-                                        'active link-light' : 'link-dark' ;?>" aria-current="page" href="menu"><i class="bi bi-house-door"></i> Daftar Menu</a>
+                                        'active link-light' : 'link-dark' ;?>" aria-current="page" href="menu"><i class="bi bi-list-ul"></i> Daftar Menu</a>
                                     </li>
                                     <?php } ?>
 
