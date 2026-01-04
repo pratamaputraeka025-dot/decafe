@@ -549,7 +549,7 @@ function updateStokInfo() {
     <div id="struk">
         <!-- Header -->
         <div class="header">
-            <h2>☕ W-CAFE ☕</h2>
+            <h2>☕ DeCAFE ☕</h2>
             <p>Aplikasi Pemesanan Cafe</p>
             <p>Jl. HAJI No. 123, Jakarta</p>
             <p>Telp: (021) 1234-5678</p>

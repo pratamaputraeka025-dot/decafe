@@ -59,7 +59,7 @@ while ($row = mysqli_fetch_array($query)) {
     <!-- Judul -->
     <div class="card mt-4 border-0 bg-light">
         <div class="card-body text-center">
-            <h5 class="card-title">W-CAFE - KASIR PEMESANAN MAKANAN DAN MINUMAN</h5>
+            <h5 class="card-title">DeCAFE - KASIR PEMESANAN MAKANAN DAN MINUMAN</h5>
             <p class="card-text"> Nikmati beragam menu makanan dan minuman favorit anda :D.</p>
             <a href="order" class="btn btn-primary">Buat Order</a>
         </div>

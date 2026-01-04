@@ -50,8 +50,8 @@ include "connect.php";
                             LEFT JOIN tb_daftar_menu ON tb_daftar_menu.id = tb_list_order.menu
                             LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id_kat_menu = tb_daftar_menu.kategori
                             WHERE tb_list_order.kode_order = '$kode_order'");
-                        
-                        // Simpan setiap item ke tabel laporan detail
+                       
+                    // Simpan setiap item ke tabel laporan detail
                         while($item = mysqli_fetch_array($query_items)){
                             mysqli_query($conn, "INSERT INTO tb_laporan_detail 
                                 (id_laporan, nama_menu, kategori_menu, harga, jumlah, subtotal) 

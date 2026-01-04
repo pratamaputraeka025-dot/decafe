@@ -220,8 +220,8 @@ foreach ($result_bulan as $row) {
                                     <th>Tanggal</th>
                                     <th>Pelanggan</th>
                                     <th>Meja</th>
-                                    <th>Menu Terlaris</th>
-                                    <th>Total</th>
+                                    <th>Menu</th>
+                                    <th>Harga</th>
                                 </tr>
                             </thead>
                             <tbody>

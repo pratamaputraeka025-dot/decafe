@@ -75,7 +75,6 @@ while ($record = mysqli_fetch_array($query)) {
                                         <div class="form-floating mb-3">
                                             <input type="password" class="form-control" id="floatingInput" placeholder="Password" disabled value="password">
                                             <label for="floatingInput">Password</label>
-                                            <div class="text-muted small mt-1">Password default: password</div>
                                         </div>
                                     </div>
                                 </div>
