@@ -67,7 +67,7 @@ foreach ($result_bulan as $row) {
         <div class="card-body">
             
             <div class="alert alert-info" role="alert">
-                <i class="bi bi-info-circle-fill"></i> <strong>Informasi:</strong> Data laporan ini bersifat permanen dan tidak akan terhapus meskipun data order dihapus.
+                <i class="bi bi-info-circle-fill"></i> Laporan Penjualan DeCafe
             </div>
 
             <!-- Laporan Per Tahun -->

@@ -1,10 +1,10 @@
-            <?php
+<?php
             session_start();
             if (isset($_GET['x']) && $_GET['x'] == 'home') {
                 $page = "home.php";
                 include "main.php";
             } else if (isset($_GET['x']) && $_GET['x'] == 'order') {
-                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2 || $_SESSION['level_decafe'] == 3) {
+                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2) {
                     $page = "order.php";
                     include "main.php";
                 } else {
@@ -20,7 +20,7 @@
                     include "main.php";
                 }
             } else if (isset($_GET['x']) && $_GET['x'] == 'dapur') {
-                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 4) {
+                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2 || $_SESSION['level_decafe'] == 4) {
                     $page = "dapur.php";
                     include "main.php";
                 } else {
@@ -28,7 +28,7 @@
                     include "main.php";
                 }
             } else if (isset($_GET['x']) && $_GET['x'] == 'report') {
-                if ($_SESSION['level_decafe'] == 1) {
+                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2) {
                     $page = "report.php";
                     include "main.php";
                 } else {
@@ -36,7 +36,7 @@
                     include "main.php";
                 }
             } else if (isset($_GET['x']) && $_GET['x'] == 'menu') {
-                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 3) {
+                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2 || $_SESSION['level_decafe'] == 3) {
                     $page = "menu.php";
                     include "main.php";
                 } else {
@@ -56,7 +56,7 @@
             } elseif (isset($_GET['x']) && $_GET['x'] == 'logout') {
                 include "proses/proses_logout.php";
             } elseif (isset($_GET['x']) && $_GET['x'] == 'katmenu') {
-                if ($_SESSION['level_decafe'] == 1) {
+                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2) {
                     $page = "katmenu.php";
                     include "main.php";
                 } else {
@@ -72,7 +72,7 @@
                     include "main.php";
                 }
             } elseif (isset($_GET['x']) && $_GET['x'] == 'viewitem') {
-                if ($_SESSION['level_decafe'] == 1) {
+                if ($_SESSION['level_decafe'] == 1 || $_SESSION['level_decafe'] == 2) {
                     $page = "view_item.php";
                     include "main.php";
                 } else {
